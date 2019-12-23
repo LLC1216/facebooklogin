@@ -2,30 +2,28 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Firebase Authentication via Goolge</title>
+    <title>Firebase Authentication via Facebook</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
 	<script>
 	  // Initialize Firebase
 	  var config = {
-	    apiKey: "AIzaSyADI6w1HgBCVidNJmzkcoPJXginSqteK9M",
-      authDomain: "ajax-31cc4.firebaseapp.com",
-      databaseURL: "https://ajax-31cc4.firebaseio.com",
-      projectId: "ajax-31cc4",
-      storageBucket: "ajax-31cc4.appspot.com",
-      messagingSenderId: "546588708128",
-      appId: "1:546588708128:web:1447021e177645d70bdb45",
-      measurementId: "G-K8RDK1SNRH"
+	    apiKey: "AIzaSyCeNTtjWefxoTGgRLYn1h_RG4O5ujyWwUg",
+	    authDomain: "test-1e3a7.firebaseapp.com",
+	    databaseURL: "https://test-1e3a7.firebaseio.com",
+	    projectId: "test-1e3a7",
+	    storageBucket: "test-1e3a7.appspot.com",
+	    messagingSenderId: "10397822667"
 	  };
 	  firebase.initializeApp(config);
 	</script>
 
     <script>
         $(document).ready(function(){  
-        	var provider = new firebase.auth.GoogleAuthProvider();
+        	var provider = new firebase.auth.FacebookAuthProvider();
 		    //所需授權的Scope 
-		    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-		    provider.setCustomParameters({'login_hint': 'user@example.com'});
+		    provider.addScope('user_birthday');
+		    provider.setCustomParameters({'display': 'popup'});
 		    var userLogin;
 			firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
@@ -43,7 +41,7 @@
 	               var token = result.credential.accessToken;
 	               // 使用者資料
 	               userLogin = result.user;
-	               alert("成功使用 Google 帳號登入！");
+	               alert("成功使用 Facebook 帳號登入！");
 	            }).catch(function(error) {
 	            	// Handle Errors here.
 	                var errorCode = error.code;
@@ -71,7 +69,7 @@
     </script>
   </head>
   <body>
-    <h1>Firebase Authentication Sign In via Google</h1>
+    <h1>Firebase Authentication Sign In via Facebook</h1>
  
     <button id="SignIn">登入</button><br><br>  
     <button id="SignOut">登出</button><br><br>  
